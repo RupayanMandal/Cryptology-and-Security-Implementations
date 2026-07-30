@@ -100,3 +100,8 @@ int main()
 
     return 1;
 }
+
+/*
+gcc test.c sort.c -o test.exe
+./test.exe
+*/
