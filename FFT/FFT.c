@@ -82,7 +82,7 @@ int main()
     unsigned int pol_degree[]={64,128,256,512,1024,2048,4096,8192,16384};
     unsigned int pol_degree_len=sizeof(pol_degree) / sizeof(pol_degree[0]);
     
-    int i,j;
+    int i,j,k;
     for(i=0;i<pol_degree_len;i++)
     {
         double complex* P=(double complex*)malloc((pol_degree[i]+1)*sizeof(double complex));
@@ -91,8 +91,12 @@ int main()
         
         volatile double checksum = 0.0;
         //warmup
-        FFT(P, pol_degree[i]+1, y);
-        
+        for(k=0;k<10;k++)
+        {
+             FFT(P, pol_degree[i]+1, y);
+        }
+
+        //benchmarking
         total_time=0;
         clock_gettime(CLOCK_MONOTONIC, &start);
         for ( j = 0; j < ITERATIONS; j++)
@@ -144,4 +148,4 @@ int main()
     return 0;
 }
 
-//gcc -o3 -march=native -lgmp FFT.c -o test
+//gcc -o3 -march=native FFT.c -o test
