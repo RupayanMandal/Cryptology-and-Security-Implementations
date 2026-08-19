@@ -1,3 +1,20 @@
+
+/* OPENSSL Implementation of RSA
+
+1.- - - - - generate the key with -- - - - - - - - -
+
+openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
+
+openssl pkey -in private.pem -pubout -out public.pem 
+
+
+2.- - - - - compile with -- - - - - - - - -
+gcc openssl.c -o rsa_example -lcrypto
+
+*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -239,12 +256,3 @@ int main(void)
     
 
 
-
-/* 
-- - - - - compile with -- - - - - - - - -
-gcc rsa_example.c -o rsa_example -lcrypto
-
-- - - - - generate the key with -- - - - - - - - -
-openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
-
-openssl pkey -in private.pem -pubout -out public.pem */
